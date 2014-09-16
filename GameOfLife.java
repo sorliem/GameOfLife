@@ -15,9 +15,9 @@ import javax.swing.Timer;
 public class GameOfLife extends JFrame implements ActionListener {
 
     GamePanel panel;
-    public boolean board[][];
+    static boolean board[][];
     int panelWidth, panelHeight;
-    private static final int DELAY = 750;
+    private static final int DELAY = 450;
     Timer timer = new Timer(DELAY, this);
 
     public GameOfLife() throws FileNotFoundException {
@@ -39,7 +39,7 @@ public class GameOfLife extends JFrame implements ActionListener {
     }
 
     private void readBoard() throws FileNotFoundException {
-        Scanner in = new Scanner(new File("start_board_2.in"));
+        Scanner in = new Scanner(new File("start_board_3.in"));
         panelWidth = in.nextInt();
         panelHeight = in.nextInt();
         in.nextLine();

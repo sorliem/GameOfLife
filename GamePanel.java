@@ -17,7 +17,6 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel {
 
     public GameOfLife game;
-    int numSquares = 27;
 
     public GamePanel(GameOfLife gol, int width, int height) throws FileNotFoundException {
         setPreferredSize(new Dimension(width * 7, height * 7));
