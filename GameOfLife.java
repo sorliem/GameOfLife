@@ -23,7 +23,7 @@ public class GameOfLife extends JFrame  {
         readBoard(fileName);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new GamePanel(this, panelWidth, panelHeight);
-        getContentPane().add(panel);
+        add(panel);
         pack();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -36,7 +36,7 @@ public class GameOfLife extends JFrame  {
         }
     }
 
-    private void readBoard(String fileName) throws FileNotFoundException {
+    public void readBoard(String fileName) throws FileNotFoundException {
         Scanner in = new Scanner(new File(fileName));
         panelWidth = in.nextInt();
         panelHeight = in.nextInt();
@@ -71,13 +71,6 @@ public class GameOfLife extends JFrame  {
                 + "-------------------------------------");
     }
 
-    /**
-     * Any live cell with fewer than two live neighbours dies, as if caused by
-     * under-population. Any live cell with two or three live neighbours lives
-     * on to the next generation. Any live cell with more than three live
-     * neighbours dies, as if by overcrowding. Any dead cell with exactly three
-     * live neighbours becomes a live cell, as if by reproduction.
-     */
     public void runGame() {
         copyBoards();
         for (int i = 0; i < prevBoard.length; i++) {
@@ -113,17 +106,11 @@ public class GameOfLife extends JFrame  {
                 }
             }
         }
-
     }
     
     private void copyBoards() {
         for (int i = 0; i < prevBoard.length; i++) {
-            for (int j = 0; j < prevBoard[0].length; j++) {
-                prevBoard[i][j] = curBoard[i][j];
-            }
+            System.arraycopy(curBoard[i], 0, prevBoard[i], 0, prevBoard[0].length);
         }
     }
-    
-   
-
 }

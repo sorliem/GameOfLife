@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public GamePanel(GameOfLife gol, int width, int height) throws FileNotFoundException {
         timer.start();
-        setBackground(new Color(255, 255, 255));
+        setBackground(Color.WHITE);
         setPreferredSize(new Dimension(width * 7, height * 7));
         game = gol;
     }
