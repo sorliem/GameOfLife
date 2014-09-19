@@ -44,8 +44,8 @@ public class GamePanel extends JPanel implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent ev){
-        if(ev.getSource()==timer){
-          repaint();// this will call at every 1 second
+        if(ev.getSource() == timer){
+            repaint();    // this will call at every (DELAY / 1000) seconds
         }
     }
 }

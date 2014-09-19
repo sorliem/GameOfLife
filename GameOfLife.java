@@ -19,7 +19,7 @@ public class GameOfLife extends JFrame  {
 
     public GameOfLife() throws FileNotFoundException {
         super("Game of Life");
-        String fileName = "start_board_3.in";
+        String fileName = "start_board_5.in";
         readBoard(fileName);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new GamePanel(this, panelWidth, panelHeight);
@@ -29,11 +29,7 @@ public class GameOfLife extends JFrame  {
         setResizable(false);
         setVisible(true);
         printBoard();
-        
-        
-        while (true) {
-            runGame();
-        }
+        runGame();
     }
 
     public void readBoard(String fileName) throws FileNotFoundException {
@@ -71,38 +67,40 @@ public class GameOfLife extends JFrame  {
                 + "-------------------------------------");
     }
 
-    public void runGame() {
-        copyBoards();
-        for (int i = 0; i < prevBoard.length; i++) {
-            for (int j = 0; j < prevBoard[0].length; j++) {
-                int numLiveNeighbors = 0;
-                for (int k = -1; k <= 1; k++) {
-                    for (int l = -1; l <= 1; l++) {
-                        if (k != 0 || l != 0) {
-                            try {
-                                if (prevBoard[i + k][j + l]) {
-//                                    System.out.println("i + k = " + (i + k) + ", j + l = " + (j + l));
-                                    numLiveNeighbors++;
+    private void runGame() {
+        
+        while (true) {
+            copyBoards();
+            for (int i = 0; i < prevBoard.length; i++) {
+                for (int j = 0; j < prevBoard[0].length; j++) {
+                    int numLiveNeighbors = 0;
+                    for (int k = -1; k <= 1; k++) {
+                        for (int l = -1; l <= 1; l++) {
+                            if (k != 0 || l != 0) {
+                                try {
+                                    if (prevBoard[i + k][j + l]) {
+                                        numLiveNeighbors++;
+                                    }
+                                } catch (IndexOutOfBoundsException e) {
+                                    //System.out.println("Out of array");
                                 }
-                            } catch (IndexOutOfBoundsException e) {
-                                //System.out.println("Out of array");
                             }
                         }
                     }
-                }
 
-                if (!prevBoard[i][j] && numLiveNeighbors == 3) {
-                    curBoard[i][j] = true;
-                } else if (prevBoard[i][j] && numLiveNeighbors == 1) {
-                    curBoard[i][j] = false;
-                } else if (prevBoard[i][j] && numLiveNeighbors == 2) {
-                    curBoard[i][j] = true;
-                } else if (prevBoard[i][j] && numLiveNeighbors == 3) {
-                    curBoard[i][j] = true;
-                } else if (prevBoard[i][j] && numLiveNeighbors > 3) {
-                    curBoard[i][j] = false;
-                } else {
-                    curBoard[i][j] = false;
+                    if (!prevBoard[i][j] && numLiveNeighbors == 3) {
+                        curBoard[i][j] = true;
+                    } else if (prevBoard[i][j] && numLiveNeighbors == 1) {
+                        curBoard[i][j] = false;
+                    } else if (prevBoard[i][j] && numLiveNeighbors == 2) {
+                        curBoard[i][j] = true;
+                    } else if (prevBoard[i][j] && numLiveNeighbors == 3) {
+                        curBoard[i][j] = true;
+                    } else if (prevBoard[i][j] && numLiveNeighbors > 3) {
+                        curBoard[i][j] = false;
+                    } else {
+                        curBoard[i][j] = false;
+                    }
                 }
             }
         }
