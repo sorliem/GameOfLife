@@ -21,7 +21,7 @@ public class GameOfLife extends JFrame  {
 
     public GameOfLife() throws FileNotFoundException {
         super("Game of Life");
-        String fileName = "start_board_5.in";
+        String fileName = "start_board.in";
         readBoard(fileName);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new GamePanel(this, panelWidth, panelHeight);
