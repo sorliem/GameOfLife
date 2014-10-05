@@ -1,7 +1,7 @@
 package gameoflife;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -25,13 +25,7 @@ public class GameOfLife extends JFrame  {
         readBoard(fileName);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new GamePanel(this, panelWidth, panelHeight);
-        addKeyListener(new KeyListener() {
-           @Override
-           public void keyTyped(KeyEvent e) {}
-           
-           @Override 
-           public void keyReleased(KeyEvent e) {}
-           
+        addKeyListener(new KeyAdapter() {
            @Override
            public void keyPressed(KeyEvent e) {
                if (e.getKeyChar() == 'q') 
